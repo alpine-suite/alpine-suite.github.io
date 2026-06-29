@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine Ecosystem</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --alpine-blue: #38bdf8;
+            --wisidia-purple: #a855f7;
+            --clouder-emerald: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            border-bottom: 1px solid #334155;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--alpine-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+        }
+
+        /* Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Hero Styling */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--alpine-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Grid / Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card.wisidia-card:hover { border-color: var(--wisidia-purple); }
+        .card.clouder-card:hover { border-color: var(--clouder-emerald); }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .badge-wisidia { background: #a855f722; color: var(--wisidia-purple); }
+        .badge-clouder { background: #10b98122; color: var(--clouder-emerald); }
+
+        /* Product Page Specifics */
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--alpine-blue);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover { opacity: 0.9; }
+        .btn-wisidia { background-color: var(--wisidia-purple); color: white; }
+        .btn-clouder { background-color: var(--clouder-emerald); color: white; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">ALPINE<span>.</span></div>
+        <ul class="nav-links">
+            <li><a onclick="showPage('home')" id="nav-home" class="active">Alpine Corp</a></li>
+            <li><a onclick="showPage('wisidia')" id="nav-wisidia">Alpine Wisidia</a></li>
+            <li><a onclick="showPage('clouder')" id="nav-clouder">Alpine Clouder</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        <section id="home" class="page-section active">
+            <div class="hero">
+                <h1>The Future of Software, Engineered.</h1>
+                <p>Alpine is a next-generation technology company building highly optimized ecosystem software to elevate your daily digital workflows.</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card wisidia-card">
+                    <span class="badge badge-wisidia">Media Subsidiary</span>
+                    <h3>Alpine Wisidia</h3>
+                    <p>Experience your local audio and video files through a gorgeous, ultra-responsive native desktop media player built for performance.</p>
+                    <br>
+                    <a onclick="showPage('wisidia')" class="btn btn-wisidia" style="cursor:pointer;">Explore Wisidia</a>
+                </div>
+                
+                <div class="card clouder-card">
+                    <span class="badge badge-clouder">Productivity Subsidiary</span>
+                    <h3>Alpine Clouder</h3>
+                    <p>Organize your thoughts seamlessly. A clean, distraction-free note-taking application designed to keep your mind clear and your notes structured.</p>
+                    <br>
+                    <a onclick="showPage('clouder')" class="btn btn-clouder" style="cursor:pointer;">Explore Clouder</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="wisidia" class="page-section">
+            <div class="product-header">
+                <h1 style="color: var(--wisidia-purple); font-size: 3rem;">Alpine Wisidia</h1>
+            </div>
+            <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-bottom: 2rem;">
+                Wisidia is Alpine's premier desktop media solution. Featuring a custom borderless title bar design, seamless drag-and-drop mechanics, and native streaming performance, it redefines how you interact with your library.
+            </p>
+            <h3>Core Framework</h3>
+            <p>Built with Electron framework principles for robust, cross-platform capabilities combined with blazing-fast hardware acceleration.</p>
+        </section>
+
+        <section id="clouder" class="page-section">
+            <div class="product-header">
+                <h1 style="color: var(--clouder-emerald); font-size: 3rem;">Alpine Clouder</h1>
+            </div>
+            <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-bottom: 2rem;">
+                Formerly known as SAC, Clouder has been entirely rebuilt under the Alpine umbrella. It serves as your personal knowledge base, providing lightning-fast note organization without the bloat of modern enterprise software.
+            </p>
+            <h3>Core Framework</h3>
+            <p>Engineered to ensure your notes are securely cached, beautifully rendered, and always ready at a moment's notice.</p>
+        </section>
+
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Remove active class from nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show target section and activate target nav link
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('nav-' + pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

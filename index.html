@@ -3,247 +3,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alpine Ecosystem</title>
+    <title>Alpine Technology Corporation</title>
     <style>
         :root {
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --alpine-blue: #38bdf8;
-            --wisidia-purple: #a855f7;
-            --clouder-emerald: #10b981;
+            --bg-main: #111111;
+            --bg-card: #1a1a1a;
+            --border-color: #2e2e2e;
+            --text-main: #f5f5f7;
+            --text-muted: #8e8e93;
+            
+            /* Corporate Brand Accents */
+            --alpine-brand: #0066cc;
+            --wisidia-accent: #8a2be2;
+            --clouder-accent: #00b074;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-main);
             color: var(--text-main);
-            line-height: 1.6;
-            padding-bottom: 60px;
+            line-height: 1.5;
+            letter-spacing: -0.01em;
         }
 
-        /* Navigation */
+        /* Top Navigation Bar */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 5%;
-            border-bottom: 1px solid #334155;
+            padding: 1.25rem 6%;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-main);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 1px;
+        .brand-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .logo span {
-            color: var(--alpine-blue);
+        .brand-logo span {
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
         }
 
-        .nav-links a {
+        .nav-menu a {
             color: var(--text-muted);
             text-decoration: none;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.2s ease;
             cursor: pointer;
         }
 
-        .nav-links a:hover, .nav-links a.active {
+        .nav-menu a:hover, .nav-menu a.active {
             color: var(--text-main);
         }
 
-        /* Sections */
-        .container {
-            max-width: 1200px;
+        /* Content Layout Container */
+        .main-container {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
         }
 
-        .page-section {
+        .view-panel {
             display: none;
         }
 
-        .page-section.active {
+        .view-panel.active {
             display: block;
         }
 
-        /* Hero Styling */
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
+        /* Corporate Corporate Headers */
+        .section-header {
+            margin-bottom: 3.5rem;
+            max-width: 700px;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
+        .section-header h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
             margin-bottom: 1rem;
-            background: linear-gradient(to right, #fff, var(--alpine-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-main);
         }
 
-        .hero p {
-            font-size: 1.2rem;
+        .section-header p {
+            font-size: 1.15rem;
             color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 2rem;
+            line-height: 1.6;
         }
 
-        /* Grid / Cards */
-        .grid {
+        /* Technical Specs & Product Blocks */
+        .product-directory {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
-        .card {
+        @media (max-width: 600px) {
+            .product-directory {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .product-node {
             background-color: var(--bg-card);
-            border: 1px solid #334155;
-            border-radius: 12px;
-            padding: 2.5rem;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card.wisidia-card:hover { border-color: var(--wisidia-purple); }
-        .card.clouder-card:hover { border-color: var(--clouder-emerald); }
-
-        .card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .badge-wisidia { background: #a855f722; color: var(--wisidia-purple); }
-        .badge-clouder { background: #10b98122; color: var(--clouder-emerald); }
-
-        /* Product Page Specifics */
-        .product-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background-color: var(--alpine-blue);
-            color: var(--bg-dark);
-            text-decoration: none;
-            font-weight: 600;
+            border: 1px solid var(--border-color);
             border-radius: 6px;
-            transition: opacity 0.3s;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .btn:hover { opacity: 0.9; }
-        .btn-wisidia { background-color: var(--wisidia-purple); color: white; }
-        .btn-clouder { background-color: var(--clouder-emerald); color: white; }
+        .node-meta {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-node h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .product-node p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        /* Infrastructure / Data Tables */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .spec-table th, .spec-table td {
+            padding: 0.75rem 0;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .spec-table th {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Buttons & Controls */
+        .action-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.65rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            transition: background-color 0.2s, border-color 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--alpine-brand);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0052a3;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background-color: #222;
+            border-color: #444;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Footer Corporate Metadata */
+        footer {
+            margin-top: 8rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">ALPINE<span>.</span></div>
-        <ul class="nav-links">
-            <li><a onclick="showPage('home')" id="nav-home" class="active">Alpine Corp</a></li>
-            <li><a onclick="showPage('wisidia')" id="nav-wisidia">Alpine Wisidia</a></li>
-            <li><a onclick="showPage('clouder')" id="nav-clouder">Alpine Clouder</a></li>
+        <div class="brand-logo">Alpine <span>Corp</span></div>
+        <ul class="nav-menu">
+            <li><a onclick="switchPanel('core')" id="menu-core" class="active">Core Systems</a></li>
+            <li><a onclick="switchPanel('wisidia')" id="menu-wisidia">Alpine Wisidia</a></li>
+            <li><a onclick="switchPanel('clouder')" id="menu-clouder">Alpine Clouder</a></li>
         </ul>
     </nav>
 
-    <div class="container">
+    <div class="main-container">
         
-        <section id="home" class="page-section active">
-            <div class="hero">
-                <h1>The Future of Software, Engineered.</h1>
-                <p>Alpine is a next-generation technology company building highly optimized ecosystem software to elevate your daily digital workflows.</p>
+        <!-- 🏢 CORE SYSTEMS / PARENT CO -->
+        <section id="core" class="view-panel active">
+            <div class="section-header">
+                <h1>Infrastructure & Application Suite.</h1>
+                <p>Alpine Technology Corporation develops optimized, client-side runtime environments and user utilities designed for local compute efficiency and direct asset control.</p>
             </div>
             
-            <div class="grid">
-                <div class="card wisidia-card">
-                    <span class="badge badge-wisidia">Media Subsidiary</span>
-                    <h3>Alpine Wisidia</h3>
-                    <p>Experience your local audio and video files through a gorgeous, ultra-responsive native desktop media player built for performance.</p>
-                    <br>
-                    <a onclick="showPage('wisidia')" class="btn btn-wisidia" style="cursor:pointer;">Explore Wisidia</a>
+            <div class="product-directory">
+                <div class="product-node">
+                    <div>
+                        <div class="node-meta" style="color: var(--wisidia-accent);">Subsidiary / Media Platform</div>
+                        <h2>Alpine Wisidia</h2>
+                        <p>A desktop architecture built explicitly for local file rendering, hardware-accelerated audio processing, and direct pipeline management.</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://github.com/alpine-suite/alpine-suite.github.io/releases/download/alpinesuite/install-wisidia-setup.exe" class="action-button btn-primary">Download x64 Binaries</a>
+                        <button onclick="switchPanel('wisidia')" class="action-button btn-outline">Documentation</button>
+                    </div>
                 </div>
                 
-                <div class="card clouder-card">
-                    <span class="badge badge-clouder">Productivity Subsidiary</span>
-                    <h3>Alpine Clouder</h3>
-                    <p>Organize your thoughts seamlessly. A clean, distraction-free note-taking application designed to keep your mind clear and your notes structured.</p>
-                    <br>
-                    <a onclick="showPage('clouder')" class="btn btn-clouder" style="cursor:pointer;">Explore Clouder</a>
+                <div class="product-node">
+                    <div>
+                        <div class="node-meta" style="color: var(--clouder-accent);">Subsidiary / Information Management</div>
+                        <h2>Alpine Clouder</h2>
+                        <p>A desktop knowledge engine focusing on low-latency document storage, localized indexing, and clean plain-text parsing systems.</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://github.com/alpine-suite/alpine-suite.github.io/releases/download/alpinesuite/install-clouder-setup.exe" class="action-button btn-primary">Download x64 Binaries</a>
+                        <button onclick="switchPanel('clouder')" class="action-button btn-outline">Documentation</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="wisidia" class="page-section">
-            <div class="product-header">
-                <h1 style="color: var(--wisidia-purple); font-size: 3rem;">Alpine Wisidia</h1>
+        <!-- 🎵 ALPINE WISIDIA DEEP DIVE -->
+        <section id="wisidia" class="view-panel">
+            <div class="section-header">
+                <h1 style="border-left: 4px solid var(--wisidia-accent); padding-left: 1rem;">Alpine Wisidia</h1>
+                <p>Desktop engine for localized asset rendering and real-time audio pipeline streaming.</p>
             </div>
-            <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-bottom: 2rem;">
-                Wisidia is Alpine's premier desktop media solution. Featuring a custom borderless title bar design, seamless drag-and-drop mechanics, and native streaming performance, it redefines how you interact with your library.
-            </p>
-            <h3>Core Framework</h3>
-            <p>Built with Electron framework principles for robust, cross-platform capabilities combined with blazing-fast hardware acceleration.</p>
+
+            <div style="margin-bottom: 3rem;">
+                <a href="https://github.com/alpine-suite/alpine-suite.github.io/releases/download/alpinesuite/install-wisidia-setup.exe" class="action-button btn-primary">Download Production Setup (.exe)</a>
+            </div>
+
+            <h3 style="margin-bottom: 1rem;">System Specifications</h3>
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Architecture Attribute</th>
+                        <th>Deployment Setting</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Core Subsystem</td>
+                        <td>Electron Framework Core Execution Context</td>
+                    </tr>
+                    <tr>
+                        <td>Input Handler</td>
+                        <td>Native OS Drag-and-Drop system integrations</td>
+                    </tr>
+                    <tr>
+                        <td>Output Directives</td>
+                        <td>Hardware Accelerated Audio and Video pipelines</td>
+                    </tr>
+                    <tr>
+                        <td>File Footprint</td>
+                        <td>&gt; 25 MB Installer Bundle</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
 
-        <section id="clouder" class="page-section">
-            <div class="product-header">
-                <h1 style="color: var(--clouder-emerald); font-size: 3rem;">Alpine Clouder</h1>
+        <!-- 📝 ALPINE CLOUDER DEEP DIVE -->
+        <section id="clouder" class="view-panel">
+            <div class="section-header">
+                <h1 style="border-left: 4px solid var(--clouder-accent); padding-left: 1rem;">Alpine Clouder</h1>
+                <p>Localized knowledge caching engine and text asset serialization suite.</p>
             </div>
-            <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-bottom: 2rem;">
-                Formerly known as SAC, Clouder has been entirely rebuilt under the Alpine umbrella. It serves as your personal knowledge base, providing lightning-fast note organization without the bloat of modern enterprise software.
-            </p>
-            <h3>Core Framework</h3>
-            <p>Engineered to ensure your notes are securely cached, beautifully rendered, and always ready at a moment's notice.</p>
+
+            <div style="margin-bottom: 3rem;">
+                <a href="https://github.com/alpine-suite/alpine-suite.github.io/releases/download/alpinesuite/install-clouder-setup.exe" class="action-button btn-primary">Download Production Setup (.exe)</a>
+            </div>
+
+            <h3 style="margin-bottom: 1rem;">System Specifications</h3>
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Architecture Attribute</th>
+                        <th>Deployment Setting</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Legacy Codebase Alias</td>
+                        <td>SAC Internal Re-architecture</td>
+                    </tr>
+                    <tr>
+                        <td>Caching Layer</td>
+                        <td>Localized memory storage buffers</td>
+                    </tr>
+                    <tr>
+                        <td>Target Environment</td>
+                        <td>Windows Desktop Client Runtimes (x64 Windows Installer)</td>
+                    </tr>
+                    <tr>
+                        <td>File Footprint</td>
+                        <td>&gt; 25 MB Installer Bundle</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
+
+        <footer>
+            <p>&copy; 2026 Alpine Technology Corporation. Distributed binaries are hosted via Github Packages infrastructure. All deployment rights reserved.</p>
+        </footer>
 
     </div>
 
     <script>
-        function showPage(pageId) {
-            // Hide all sections
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
+        function switchPanel(panelId) {
+            document.querySelectorAll('.view-panel').forEach(panel => {
+                panel.classList.remove('active');
             });
-            // Remove active class from nav links
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
+            document.querySelectorAll('.nav-menu a').forEach(menuItem => {
+                menuItem.classList.remove('active');
             });
             
-            // Show target section and activate target nav link
-            document.getElementById(pageId).classList.add('active');
-            document.getElementById('nav-' + pageId).classList.add('active');
+            document.getElementById(panelId).classList.add('active');
+            document.getElementById('menu-' + panelId).classList.add('active');
             
-            // Scroll to top
             window.scrollTo(0, 0);
         }
     </script>
